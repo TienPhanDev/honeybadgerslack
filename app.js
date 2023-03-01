@@ -6,7 +6,13 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 function hasSpam(payload) {
-  return true
+  if ("Type" in payload && payload.Type.includes("Spam")) {
+    return true;
+  }
+  if ("Name" in payload && payload.Name.includes("Spam")) {
+    return true;
+  }
+  return false;
 }
 
 app.use(bodyParser.json());
